@@ -10,9 +10,9 @@ builder.Services.AddSwaggerGen();
 //builder.Services.AddSingleton<POSMalaysiaLocationService>();
 //builder.Services.AddSingleton<ILocationService>(x => new CacheLocationService(x.GetRequiredService<POSMalaysiaLocationService>()));
 
+builder.Services.AddHttpClient();
 builder.Services.AddSingleton<ILocationService, POSMalaysiaLocationService>();
 builder.Services.Decorate<ILocationService, CacheLocationService>();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
