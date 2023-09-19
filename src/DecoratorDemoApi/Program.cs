@@ -7,8 +7,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<POSMalaysiaLocationService>();
-builder.Services.AddSingleton<ILocationService>(x => new CacheLocationService(x.GetRequiredService<POSMalaysiaLocationService>()));
+//builder.Services.AddSingleton<POSMalaysiaLocationService>();
+//builder.Services.AddSingleton<ILocationService>(x => new CacheLocationService(x.GetRequiredService<POSMalaysiaLocationService>()));
+
+builder.Services.AddSingleton<ILocationService, POSMalaysiaLocationService>();
+builder.Services.Decorate<ILocationService, CacheLocationService>();
 
 var app = builder.Build();
 
